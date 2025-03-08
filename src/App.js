@@ -37,6 +37,12 @@ const App = () => {
     fetchData();
   }, []);
 
+  const handleClick = (e) => {
+    const card = e.currentTarget.closest('.card');
+    card.classList.add('spin');
+    setTimeout(() => card.classList.remove('spin'), 1000); // Remove spin class after animation
+  };
+
   return (
     <Router>
       <div className="App">
@@ -47,7 +53,7 @@ const App = () => {
               <img src={item.image} alt="Card" className="card-image" />
               <h2>{item.title}</h2>
               <p>{item.body.substring(0, 250)}...</p>
-              <Link to={`/details/${item.id}`}>View Details</Link>
+              <Link to={`/details/${item.id}`} onClick={handleClick}>View Details</Link>
             </div>
           ))}
         </div>
